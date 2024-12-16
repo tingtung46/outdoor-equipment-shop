@@ -1,24 +1,27 @@
+import logo from "../images/logo/navbar-logo.png";
+import { ShoppingCart } from "lucide-react";
+
 export const Header = () => {
   return (
     <>
       <header>
-        <nav className="flex space-between">
+        <div className="container">
           <div>
-            <img src="" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </div>
 
-          <div>
+          <nav className="flex">
             <ul>
               <li>Home</li>
               <li>Shop</li>
               <li>About Us</li>
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <img src="" alt="Cart Icon" />
+            <ShoppingCart />
           </div>
-        </nav>
+        </div>
       </header>
     </>
   );
