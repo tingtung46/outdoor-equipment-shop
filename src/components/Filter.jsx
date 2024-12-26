@@ -1,40 +1,42 @@
-import { FilterIcon } from "lucide-react";
-import { types, brands } from "../data/filterItem";
+import { FilterIcon } from 'lucide-react';
+import { types, brands } from '../data/filterItem';
 
 export const Filter = () => {
-	return (
-		<>
-			<h2>
-				Filter <FilterIcon />
-			</h2>
+  return (
+    <>
+      <aside>
+        <h2>
+          Filter <FilterIcon />
+        </h2>
 
-			<div>
-				<p>Type</p>
+        <div>
+          <p>Type</p>
 
-				<button type="button">All</button>
+          <button type="button">All</button>
 
-				{types.map((type) => {
-					return (
-						<button type="button" key={type.id}>
-							{type.type}
-						</button>
-					);
-				})}
-			</div>
+          {types.map((type) => {
+            return (
+              <button type="button" key={type.id}>
+                {type.type}
+              </button>
+            );
+          })}
+        </div>
 
-			<div>
-				<p>Brand</p>
+        <div>
+          <p>Brand</p>
 
-				<button type="button">All</button>
+          <button type="button">All</button>
 
-				{brands.map((brand) => {
-					return (
-						<button type="button" key={brand.id}>
-							{brand.brand}
-						</button>
-					);
-				})}
-			</div>
-		</>
-	);
+          {brands.map((brand) => {
+            return (
+              <button type="button" key={brand.id}>
+                {brand.brand}
+              </button>
+            );
+          })}
+        </div>
+      </aside>
+    </>
+  );
 };
