@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { data } from '../data/catalog';
 import { Card } from './Card';
 import { Pagination } from './Pagination';
@@ -20,12 +21,16 @@ export const ProductDisplay = () => {
       <section>
         <div>
           {currentProductData.map((product) => {
-            <Card
-              key={product.Id}
-              img={`./images/products/${product.Id}.webp`}
-              title={product.Name}
-              price={product.Price}
-            />;
+            return (
+              <>
+                <Card
+                  key={uuidv4()}
+                  img={`./images/products/${product.Id}.webp`}
+                  title={product.Name}
+                  price={product.Price}
+                />
+              </>
+            )
           })}
         </div>
 

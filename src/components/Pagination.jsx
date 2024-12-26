@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { usePagination, DOTS } from '../utils/UsePagination';
+import { v4 as uuidv4 } from 'uuid';
+import { usePagination, DOTS } from '../utils/usePagination';
 import classNames from 'classnames';
 import '../styles/pagination.css';
 
@@ -38,22 +39,23 @@ export const Pagination = ({
         </button>
       </li>
 
-      {paginationRange.map((index, pageNumber) => {
+      {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return (
-            <li key={index}>
+            <li key={uuidv4()}>
               <button>&#8230</button>
             </li>
           );
         }
 
         return (
-          <li
-            key={index}
-            onClick={onPageChange(pageNumber)}
-            className={classNames({ selected: currentPage === pageNumber })}
-          >
-            {pageNumber}
+          <li key={uuidv4()}>
+            <button
+              onClick={() => onPageChange(pageNumber)}
+              className={classNames({ selected: currentPage === pageNumber })}
+            >
+              {pageNumber}
+            </button>
           </li>
         );
       })}
