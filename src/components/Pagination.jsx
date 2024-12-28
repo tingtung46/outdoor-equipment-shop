@@ -43,7 +43,7 @@ export const Pagination = ({
         if (pageNumber === DOTS) {
           return (
             <li key={uuidv4()}>
-              <button>&#8230</button>
+              {'\u2026'}
             </li>
           );
         }
