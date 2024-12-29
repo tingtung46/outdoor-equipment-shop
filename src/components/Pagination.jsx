@@ -1,10 +1,11 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 import { usePagination, DOTS } from '../utils/usePagination';
 import classNames from 'classnames';
 import '../styles/pagination.css';
 
-export const Pagination = ({
+const Pagination = ({
   onPageChange,
   totalCount,
   siblingCount = 1,
@@ -71,3 +72,16 @@ export const Pagination = ({
     </ul>
   );
 };
+
+Pagination.propTypes = {
+  onPageChange: PropTypes.func,
+  totalCount: PropTypes.number,
+  currentPage: PropTypes.number,
+  pageSize: PropTypes.number,
+}
+
+Pagination.defaultProps = {
+  siblingCount: 1,
+}
+
+export default Pagination;

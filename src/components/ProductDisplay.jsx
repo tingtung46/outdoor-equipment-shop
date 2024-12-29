@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { data } from '../data/catalog';
-import { Card } from './Card';
-import { Pagination } from './Pagination';
+import Card from './Card';
+import Pagination from './Pagination';
+import PropTypes from 'prop-types';
 
 let pageSize = 9;
 
-export const ProductDisplay = () => {
+const ProductDisplay = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentProductData = useMemo(() => {
@@ -14,7 +14,7 @@ export const ProductDisplay = () => {
     const lastPageIndex = firstPageIndex + pageSize;
 
     return data.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [data, currentPage]);
 
   return (
     <>
@@ -30,7 +30,7 @@ export const ProductDisplay = () => {
                   price={product.Price}
                 />
               </>
-            )
+            );
           })}
         </div>
 
@@ -46,3 +46,9 @@ export const ProductDisplay = () => {
     </>
   );
 };
+
+ProductDisplay.propTypes = {
+  data: PropTypes.any || PropTypes.array,
+};
+
+export default ProductDisplay;

@@ -1,22 +1,26 @@
-import { FilterIcon } from 'lucide-react';
-import { types, brands } from '../data/filterItem';
+import { ListFilter } from 'lucide-react';
+import PropTypes from 'prop-types';
+import { type, brand } from '../data/filterItem';
 
-export const Filter = () => {
+const Filter = ({ handleFilter }) => {
   return (
     <>
       <aside>
         <h2>
-          Filter <FilterIcon />
+          Filter <ListFilter />
         </h2>
 
         <div>
           <p>Type</p>
 
-          <button type="button">All</button>
-
-          {types.map((type) => {
+          {type.map((type) => {
             return (
-              <button type="button" key={type.id}>
+              <button
+                type="button"
+                data-name={type.type}
+                onClick={(e) => handleFilter(e, 'type')}
+                key={type.id}
+              >
                 {type.type}
               </button>
             );
@@ -26,11 +30,14 @@ export const Filter = () => {
         <div>
           <p>Brand</p>
 
-          <button type="button">All</button>
-
-          {brands.map((brand) => {
+          {brand.map((brand) => {
             return (
-              <button type="button" key={brand.id}>
+              <button
+                type="button"
+                data-name={brand.brand}
+                onClick={(e) => handleFilter(e, 'brand')}
+                key={brand.id}
+              >
                 {brand.brand}
               </button>
             );
@@ -40,3 +47,9 @@ export const Filter = () => {
     </>
   );
 };
+
+Filter.propTypes = {
+  handleFilter: PropTypes.func,
+}
+
+export default Filter;

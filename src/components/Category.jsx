@@ -1,4 +1,4 @@
-export const Category = () => {
+const Category = () => {
   const productCategory = [];
 
   return (
@@ -18,3 +18,5 @@ export const Category = () => {
     </>
   );
 };
+
+export default Category;

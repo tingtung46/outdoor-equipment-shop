@@ -1,4 +1,4 @@
-export const ReasonBuying = () => {
+const ReasonBuying = () => {
   return (
     <>
       <section>
@@ -33,3 +33,5 @@ export const ReasonBuying = () => {
     </>
   );
 };
+
+export default ReasonBuying;
