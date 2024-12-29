@@ -1,14 +1,20 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import getProductImage from '../utils/getProductImage';
 
-const Card = ({ img, title, price }) => {
+const Card = ({ product }) => {
+  const imgUrl = getProductImage(product.Id);
+
   return (
     <>
       <div className="w-25 h-27">
-        <img src={img} alt="Product" className="w-full h-full rounded-md" />
+        <img src={imgUrl} alt="Product" className="w-full h-full rounded-md" />
 
         <div className="flex justify-between">
-          <p>{title}</p>
-          <p>{'\u0024'}{price}</p>
+          <p>{product.Name}</p>
+          <p>
+            {'\u0024'}
+            {product.Price}
+          </p>
         </div>
       </div>
     </>
@@ -16,9 +22,7 @@ const Card = ({ img, title, price }) => {
 };
 
 Card.propTypes = {
-  img: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.number,
-}
+  product: PropTypes.any || PropTypes.array
+};
 
 export default Card;

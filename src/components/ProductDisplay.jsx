@@ -25,9 +25,7 @@ const ProductDisplay = ({ data }) => {
               <>
                 <Card
                   key={uuidv4()}
-                  img={`./images/products/${product.Id}.webp`}
-                  title={product.Name}
-                  price={product.Price}
+                  product={product}
                 />
               </>
             );

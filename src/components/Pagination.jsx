@@ -80,8 +80,4 @@ Pagination.propTypes = {
   pageSize: PropTypes.number,
 }
 
-Pagination.defaultProps = {
-  siblingCount: 1,
-}
-
 export default Pagination;
