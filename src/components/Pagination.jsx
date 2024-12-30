@@ -20,7 +20,7 @@ const Pagination = ({
   }
 
   const onNext = () => {
-    onPageChange(currentPage - 1);
+    onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
