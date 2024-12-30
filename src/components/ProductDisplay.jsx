@@ -21,14 +21,7 @@ const ProductDisplay = ({ data }) => {
       <section>
         <div>
           {currentProductData.map((product) => {
-            return (
-              <>
-                <Card
-                  key={uuidv4()}
-                  product={product}
-                />
-              </>
-            );
+            return <Card product={product} key={uuidv4()} />;
           })}
         </div>
 
