@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import getProductImage from '../utils/getProductImage';
+import { getProductImage } from '../utils/getImage';
 
 const Card = ({ product }) => {
   const imgUrl = getProductImage(product.Id);

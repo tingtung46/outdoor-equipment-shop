@@ -1,6 +1,6 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import PropTypes from 'prop-types';
-import getProductImage from '../utils/getProductImage';
+import { getProductImage } from '../utils/getImage';
 import { useState } from 'react';
 
 const ProductPage = ({ product }) => {

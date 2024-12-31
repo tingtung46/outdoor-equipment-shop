@@ -1,6 +1,9 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
+import { getProductImage } from '../utils/getImage'
 
 const CartItem = ({ query }) => {
+  const image = getProductImage(query.product.Id);
+
   const inputOnlyNumber = (e) => {
     if (NaN(e.key)) e.preventDefault;
   };
@@ -8,7 +11,7 @@ const CartItem = ({ query }) => {
   return (
     <>
       <div>
-        <img src="" alt="Product" />
+        <img src={image} alt="Product" />
 
         <div>
           <div>
