@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import { type } from '../data/filterItem';
-import { getCategoryImage } from "../utils/getImage";
+import { getCategoryImage } from '../utils/getImage';
 
 const Category = () => {
   return (
@@ -10,10 +10,12 @@ const Category = () => {
 
         <div>
           {type.map((category) => {
-            <div key={uuidv4()}>
-              <img src={getCategoryImage(category.id)} alt="Category" />
-              <p>{category.type}</p>
-            </div>
+            return (
+              <div key={uuidv4()}>
+                <img src={getCategoryImage(category.id)} alt="Category" />
+                <p>{category.type}</p>
+              </div>
+            );
           })}
         </div>
       </section>
