@@ -7,6 +7,10 @@ const ProductPage = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const imgUrl = getProductImage(product.Id);
 
+  const inputOnlyNumber = (e) => {
+    if (NaN(e.key)) e.preventDefault;
+  };
+
   return (
     <>
       <img src={imgUrl} alt="Product" />
@@ -30,7 +34,9 @@ const ProductPage = ({ product }) => {
             name="quantity"
             id="quantity"
             value={quantity}
-            onKeyDown={(e) => setQuantity(Number(e.target.value))}
+            aria-label='quantity'
+            onKeyDown={inputOnlyNumber}
+            onChange={(e) => setQuantity(Number(e.target.value))}
           />
           <button type="button">
             <PlusCircle />
