@@ -4,7 +4,7 @@ import ShopPage from '../../src/pages/ShopPage';
 
 describe('Shop Page', () => {
   beforeEach(() => {
-    render(<ShopPage />)
+    render(<ShopPage />);
   });
 
   it('should render filter heading and variant', () => {
@@ -15,5 +15,19 @@ describe('Shop Page', () => {
     expect(heading).toBeInTheDocument();
     expect(type).toBeInTheDocument();
     expect(brand).toBeInTheDocument();
+  });
+
+  it('should render one of product from all category', () => {
+    const title = screen.getByText(/Summit Pro Harness/i);
+    const price = screen.getByText(/89.99/i);
+
+    expect(title).toBeInTheDocument();
+    expect(price).toBeInTheDocument();
+  });
+
+  it('should render all buttons', () => {
+    const button = screen.getAllByRole('button');
+
+    expect(button).toHaveLength(29);
   });
 });
