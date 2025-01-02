@@ -1,6 +1,7 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import { getProductImage } from '../utils/getImage'
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ query }) => {
   const [item, setItem] = useState(query);
@@ -57,6 +58,10 @@ const CartItem = ({ query }) => {
       </div>
     </>
   );
+};
+
+CartItem.propTypes = {
+  query: PropTypes.any || PropTypes.array,
 };
 
 export default CartItem;
