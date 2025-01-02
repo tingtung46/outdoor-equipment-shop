@@ -4,18 +4,20 @@ import GetProductButton from '../components/GetProductButton';
 import OrderSummary from '../components/OrderSummary';
 
 const CartPage = ({ shoppingCart }) => {
-  <>
-    <section>
-      {shoppingCart.map((query) => {
-        return <CartItem key={uuidv4()} query={query} />;
-      })}
-    </section>
+  return (
+    <>
+      <section>
+        {shoppingCart.map((query) => {
+          return <CartItem key={uuidv4()} query={query} />;
+        })}
+      </section>
 
-    <GetProductButton />
-    <OrderSummary />
+      <GetProductButton />
+      <OrderSummary />
 
-    <button type="button">Check Out</button>
-  </>;
+      <button type="button">Check Out</button>
+    </>
+  )
 };
 
 export default CartPage;
