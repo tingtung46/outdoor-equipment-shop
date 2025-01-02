@@ -1,12 +1,23 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import { getProductImage } from '../utils/getImage'
+import { useState } from 'react';
 
 const CartItem = ({ query }) => {
-  const image = getProductImage(query.product.Id);
+  const [item, setItem] = useState(query);
+
+  const image = getProductImage(item.Id);
 
   const inputOnlyNumber = (e) => {
     if (NaN(e.key)) e.preventDefault;
   };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setItem(prevItem => ({
+      ...prevItem,
+      quantity: e.target.value,
+    }))
+  }
 
   return (
     <>
@@ -15,13 +26,13 @@ const CartItem = ({ query }) => {
 
         <div>
           <div>
-            <p>{query.product.Brand}</p>
+            <p>{item.Brand}</p>
             <p>sub total price</p>
           </div>
 
-          <h3>{query.product.Name}</h3>
+          <h3>{item.Name}</h3>
 
-          <p>{query.product.Price}</p>
+          <p>{item.Price}</p>
 
           <div>
             <label htmlFor="quantity">Quantity</label>
@@ -33,8 +44,10 @@ const CartItem = ({ query }) => {
               type="text"
               name="quantity"
               id="quantity"
-              value={query.quantity}
+              value={item.quantity}
+              aria-label='quantity'
               onKeyDown={inputOnlyNumber}
+              onChange={handleChange}
             />
             <button type="button">
               <PlusCircle />
