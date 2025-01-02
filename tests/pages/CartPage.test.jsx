@@ -47,4 +47,28 @@ describe('Cart Page', () => {
     expect(input).toBeInTheDocument();
     expect(input.value).toBe('4');
   });
+
+  it('should render button of how to get item', () => {
+    const pickUp = screen.getByText(/pick up/i);
+    const ship = screen.getByText(/ship it to your address/i);
+
+    expect(pickUp).toBeInTheDocument();
+    expect(ship).toBeInTheDocument();
+  });
+
+  it('should render order summary', () => {
+    const heading = screen.getByText(/order summary/i);
+    const shipping = screen.getByText(/standard shipping/i);
+    const orderTotal = screen.getByText(/order total/i);
+
+    expect(heading).toBeInTheDocument();
+    expect(shipping).toBeInTheDocument();
+    expect(orderTotal).toBeInTheDocument();
+  });
+
+  it('should render check out button', () => {
+    const button = screen.getByRole('button', { name: /check out/i });
+
+    expect(button).toBeInTheDocument();
+  });
 });
