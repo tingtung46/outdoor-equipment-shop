@@ -1,5 +1,6 @@
-import logo from "../images/logo/navbar-logo.png";
-import { ShoppingCart } from "lucide-react";
+import { Link } from 'react-router-dom';
+import logo from '../images/logo/navbar-logo.png';
+import { ShoppingCart } from 'lucide-react';
 
 const Header = () => {
   return (
@@ -12,15 +13,23 @@ const Header = () => {
 
           <nav className="flex">
             <ul>
-              <li>Home</li>
-              <li>Shop</li>
-              <li>About Us</li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+
+              <li>
+                <Link to="/shop-page">Shop</Link>
+              </li>
+
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
             </ul>
           </nav>
 
-          <button type="button">
+          <Link to="/cart">
             <ShoppingCart />
-          </button>
+          </Link>
         </div>
       </header>
     </>
