@@ -1,13 +1,11 @@
-import data from '../data/catalog.json'
+import data from '../data/catalog.json';
 
 export const getData = (category) => {
   if (category === 'all') {
-    return data
+    return data;
   }
 
-  data.filter((product) => {
-    product.Type === category
-  });
+  const filteredCategory = data.filter((product) => product.Type === category);
 
-  return data;
-}
+  return filteredCategory;
+};
