@@ -1,6 +1,7 @@
 import { ListFilter } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { type, brand } from '../data/filterItem';
+import { Link } from 'react-router-dom';
 
 const Filter = ({ handleFilter }) => {
   return (
@@ -11,20 +12,19 @@ const Filter = ({ handleFilter }) => {
         </h2>
 
         <div>
-          <p>Type</p>
+          <p>Category</p>
 
-          {type.map((type) => {
-            return (
-              <button
-                type="button"
-                data-name={type.type}
-                onClick={(e) => handleFilter(e, 'type')}
-                key={type.id}
-              >
-                {type.type}
-              </button>
-            );
-          })}
+          <ul>
+            {type.map((type) => {
+              return (
+                <li key={type.id}>
+                  <Link to={`/shop-page/${type.param}`}>
+                    {type.type}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         <div>
