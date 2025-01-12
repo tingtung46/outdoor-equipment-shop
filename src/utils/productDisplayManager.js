@@ -5,7 +5,7 @@ export const getData = (category) => {
     return data;
   }
 
-  const filteredCategory = data.filter((product) => product.Type === category);
+  const filteredCategory = data.filter((product) => product.Param === category);
 
   return filteredCategory;
 };
