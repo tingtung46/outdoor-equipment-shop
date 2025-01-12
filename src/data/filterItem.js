@@ -2,34 +2,42 @@ export const type = [
   {
     id: 1,
     type: "Footwear",
+    param: 'footwear',
   },
   {
     id: 2,
     type: "Climbing",
+    param: 'climbing',
   },
   {
     id: 3,
     type: "Ski/boarding",
+    param: 'ski-boarding',
   },
   {
     id: 4,
     type: "Bags",
+    param: 'bags',
   },
   {
     id: 5,
     type: "Trekking",
+    param: 'trekking',
   },
   {
     id: 6,
     type: "Jackets",
+    param: 'jackets',
   },
   {
     id: 7,
     type: "Navigation",
+    param: 'navigation'
   },
   {
     id: 8,
     type: "Cycling",
+    param: 'cycling',
   },
 ];
 
