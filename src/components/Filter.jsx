@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { type, brand } from '../data/filterItem';
 import { Link } from 'react-router-dom';
 
-const Filter = ({ handleFilter }) => {
+const Filter = ({ handleFilter, brands }) => {
   return (
     <>
       <aside>
@@ -18,9 +18,7 @@ const Filter = ({ handleFilter }) => {
             {type.map((type) => {
               return (
                 <li key={type.id}>
-                  <Link to={`/shop-page/${type.param}`}>
-                    {type.type}
-                  </Link>
+                  <Link to={`/shop-page/${type.param}`}>{type.type}</Link>
                 </li>
               );
             })}
@@ -30,18 +28,22 @@ const Filter = ({ handleFilter }) => {
         <div>
           <p>Brand</p>
 
-          {brand.map((brand) => {
-            return (
-              <button
-                type="button"
-                data-name={brand.brand}
-                onClick={(e) => handleFilter(e, 'brand')}
-                key={brand.id}
-              >
-                {brand.brand}
-              </button>
-            );
-          })}
+          <div>
+            {brand.map((brand) => {
+              return (
+                <div key={brand.id}>
+                  <input
+                    type="checkbox"
+                    name={brand.brand.toLowerCase()}
+                    id={brand.brand.toLowerCase()}
+                    onChange={() => handleFilter(brand.brand.toLowerCase())}
+                    checked={brands.include(brand.brand.toLowerCase())}
+                  />
+                  <label htmlFor={brand.brand.toLowerCase()}>{brand.brand}</label>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </aside>
     </>
@@ -50,6 +52,7 @@ const Filter = ({ handleFilter }) => {
 
 Filter.propTypes = {
   handleFilter: PropTypes.func,
-}
+  brands: PropTypes.array,
+};
 
 export default Filter;
