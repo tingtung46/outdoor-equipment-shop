@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { type, brand } from '../data/filterItem';
 import { Link } from 'react-router-dom';
 
-const Filter = ({ handleFilter, brands }) => {
+const Filter = ({ handleFilter }) => {
   return (
     <>
       <aside>
@@ -36,8 +36,7 @@ const Filter = ({ handleFilter, brands }) => {
                     type="checkbox"
                     name={brand.brand.toLowerCase()}
                     id={brand.brand.toLowerCase()}
-                    onChange={() => handleFilter(brand.brand.toLowerCase())}
-                    checked={brands.include(brand.brand.toLowerCase())}
+                    onChange={(e) => handleFilter(e, brand.brand.toLowerCase())}
                   />
                   <label htmlFor={brand.brand.toLowerCase()}>{brand.brand}</label>
                 </div>
