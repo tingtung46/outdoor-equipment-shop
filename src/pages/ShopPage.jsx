@@ -4,7 +4,6 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 const ShopPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const brands = searchParams.getAll('brand') || [];
-  console.log(brands);
 
   const handleBrandFilter = (e, brandName) => {
     const include = brands.includes(brandName);
