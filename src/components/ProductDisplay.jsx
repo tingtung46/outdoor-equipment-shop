@@ -18,11 +18,6 @@ const ProductDisplay = () => {
   const products = getData(category);
   const filteredProducts = [].flat();
 
-  const onPageChange = (onPage) => {
-    setSearchParams((prev) => ({ ...prev, page: onPage }));
-    navigate(`/shop-page/${category}?page=${encodeURIComponent(onPage)}`);
-  };
-
   const currentProductData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
@@ -41,18 +36,21 @@ const ProductDisplay = () => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
 
-    return filteredProducts.slice(firstPageIndex, lastPageIndex);
+    return filteredProducts.flat().slice(firstPageIndex, lastPageIndex);
   }, [filteredProducts, currentPage]);
 
-  console.log(filteredProductData.flat());
+  const onPageChange = (onPage) => {
+    setSearchParams((prev) => ({ ...prev, page: onPage }));
+    navigate(`/shop-page/${category}?page=${encodeURIComponent(onPage)}`);
+  };
 
-  if (!currentProductData.length && !filteredProductData.flat().length) {
+  if (!products.length && !filteredProducts.flat().length) {
     return <div>Not Found</div>;
-  } else if (filteredProductData.flat().length) {
+  } else if (filteredProducts.flat().length) {
     return (
       <section>
         <div>
-          {filteredProductData.flat().map((product) => {
+          {filteredProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
         </div>
@@ -60,7 +58,7 @@ const ProductDisplay = () => {
         <div>
           <Pagination
             currentPage={currentPage}
-            totalCount={filteredProductData.flat().length}
+            totalCount={filteredProducts.flat().length}
             pageSize={pageSize}
             onPageChange={onPageChange}
           />
