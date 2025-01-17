@@ -1,9 +1,13 @@
 import { ListFilter } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { type, brand } from '../data/filterItem';
-import { Link } from 'react-router-dom';
+import getBrandFilter from '../utils/handleFilter';
+import { Link, useParams } from 'react-router-dom';
 
 const Filter = ({ handleFilter }) => {
+  const { category } = useParams();
+  const brands = getBrandFilter(category, brand);
+
   return (
     <>
       <aside>
@@ -29,7 +33,7 @@ const Filter = ({ handleFilter }) => {
           <p>Brand</p>
 
           <div>
-            {brand.map((brand) => {
+            {brands.map((brand) => {
               return (
                 <div key={brand.id}>
                   <input

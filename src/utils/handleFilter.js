@@ -1,32 +1,29 @@
-export const filteredCollected = (filterProp) => {
-  const collectedTrueKeys = {
-    Type: [],
-    Brand: [],
-  };
-  const { Type, Brand } = filterProp.passingTags;
+import data from '../data/catalog.json';
 
-  for (let typeKey in Type) {
-    if (Type[typeKey]) collectedTrueKeys.Type.push(typeKey);
+const getBrandFilter = (category, brand) => {
+  if (category === 'all') {
+    return brand;
   }
 
-  for (let brandKey in Brand) {
-    if (Brand[brandKey]) collectedTrueKeys.Brand.push(brandKey);
-  }
+  const gottenBrand = [];
 
-  return collectedTrueKeys;
-};
+  const products = data.filter((product) =>
+    product.Param === category
+  );
 
-export const multiPropsFilter = (products, filters) => {
-  const filterKeys = Object.keys(filters);
-
-  const filteredProduct = products.filter((product) => {
-    return filterKeys.every((key) => {
-      if (!filters[key].length) return true;
-      if (!filters[key].includes(product[key])) return true;
-
-      return filters[key].includes(product[key]);
-    });
+  const brands = products.map((product) => {
+    return product.Brand
   });
 
-  return !filteredProduct ? null : filteredProduct;
-};
+  const filteredBrand = new Set(brands);
+  const newFilteredBrand = [...filteredBrand];
+
+  newFilteredBrand.forEach((newItem) => {
+    const filteredItem = brand.filter((item) => item.brand === newItem);
+    gottenBrand.push(filteredItem);
+  });
+
+  return gottenBrand.flat();
+}
+
+export default getBrandFilter;
