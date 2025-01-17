@@ -1,14 +1,20 @@
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { getProductImage } from '../utils/getImage';
+import data from '../data/catalog.json';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const ProductPage = ({ product }) => {
+const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
-  const imgUrl = getProductImage(product.Id);
+  const { product } = useParams();
+  const item = data
+    .filter((stuff) => product === stuff.Name.split(' ').join('-').toLowerCase())
+    .pop();
+  const imgUrl = getProductImage(item.Id);
 
   const inputOnlyNumber = (e) => {
-    if (NaN(e.key)) e.preventDefault;
+    if (!/[0-9]/.test(e.key)) e.preventDefault();
   };
 
   return (
@@ -17,11 +23,11 @@ const ProductPage = ({ product }) => {
 
       <div>
         <div>
-          <h2>{product.Name}</h2>
-          <p>{product.Price}</p>
+          <h2>{item.Name}</h2>
+          <p>{item.Price}</p>
         </div>
 
-        <p>{product.Description}</p>
+        <p>{item.Description}</p>
 
         <div>
           <label htmlFor="quantity">Quantity</label>
@@ -34,7 +40,7 @@ const ProductPage = ({ product }) => {
             name="quantity"
             id="quantity"
             value={quantity}
-            aria-label='quantity'
+            aria-label="quantity"
             onKeyDown={inputOnlyNumber}
             onChange={(e) => setQuantity(Number(e.target.value))}
           />
