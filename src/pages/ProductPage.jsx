@@ -4,17 +4,30 @@ import { getProductImage } from '../utils/getImage';
 import data from '../data/catalog.json';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import UpdateCartBtn from '../components/UpdateCartBtn';
 
-const ProductPage = () => {
+const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct }) => {
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
   const { product } = useParams();
-  const item = data
-    .filter((stuff) => product === stuff.Name.split(' ').join('-').toLowerCase())
-    .pop();
+  const foundItem =
+    shoppingCart.find((stuff) => stuff.Name.split(' ').join('-').toLowerCase() === product) || '';
+  const item = data.find((stuff) => product === stuff.Name.split(' ').join('-').toLowerCase());
   const imgUrl = getProductImage(item.Id);
+
+  if (foundItem) setQuantity(foundItem.quantity);
 
   const inputOnlyNumber = (e) => {
     if (!/[0-9]/.test(e.key)) e.preventDefault();
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity === 0) return;
+    setQuantity(quantity - 1);
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
   };
 
   return (
@@ -32,7 +45,7 @@ const ProductPage = () => {
         <div>
           <label htmlFor="quantity">Quantity</label>
 
-          <button type="button">
+          <button type="button" onClick={decreaseQuantity}>
             <MinusCircle />
           </button>
           <input
@@ -44,19 +57,38 @@ const ProductPage = () => {
             onKeyDown={inputOnlyNumber}
             onChange={(e) => setQuantity(Number(e.target.value))}
           />
-          <button type="button">
+          <button type="button" onClick={increaseQuantity}>
             <PlusCircle />
           </button>
         </div>
 
-        <button type="button">Add to Cart</button>
+        {!isAdded ? (
+          <button
+            type="button"
+            onClick={() => {
+              addProduct({ item, quantity });
+              setIsAdded(true);
+            }}
+          >
+            Add to Cart
+          </button>
+        ) : (
+          <UpdateCartBtn
+            updateProduct={updateProduct}
+            removeProduct={removeProduct}
+            setIsAdded={setIsAdded}
+          />
+        )}
       </div>
     </>
   );
 };
 
 ProductPage.propTypes = {
-  product: PropTypes.any || PropTypes.object,
+  addProduct: PropTypes.any || PropTypes.func,
+  shoppingCart: PropTypes.array,
+  updateProduct: PropTypes.any || PropTypes.func,
+  removeProduct: PropTypes.any || PropTypes.func,
 };
 
 export default ProductPage;
