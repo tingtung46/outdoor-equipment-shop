@@ -2,7 +2,7 @@ import { MinusCircle, PlusCircle } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { getProductImage } from '../utils/getImage';
 import data from '../data/catalog.json';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import UpdateCartBtn from '../components/UpdateCartBtn';
 
@@ -10,12 +10,21 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
   const { product } = useParams();
+
+  // Find item on cart when cart item is clicked from cart page and use it as flag
   const foundItem =
     shoppingCart.find((stuff) => stuff.Name.split(' ').join('-').toLowerCase() === product) || '';
+
+  // Normally getting item for information on product page
   const item = data.find((stuff) => product === stuff.Name.split(' ').join('-').toLowerCase());
   const imgUrl = getProductImage(item.Id);
 
-  if (foundItem) setQuantity(foundItem.quantity);
+  useEffect(() => {
+    if (foundItem) {
+      setQuantity(foundItem.quantity);
+      setIsAdded(true);
+    }
+  }, [foundItem]);
 
   const inputOnlyNumber = (e) => {
     if (!/[0-9]/.test(e.key)) e.preventDefault();
@@ -66,7 +75,7 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
           <button
             type="button"
             onClick={() => {
-              addProduct({ item, quantity });
+              addProduct({ ...item }, quantity);
               setIsAdded(true);
             }}
           >
@@ -77,6 +86,8 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
             updateProduct={updateProduct}
             removeProduct={removeProduct}
             setIsAdded={setIsAdded}
+            item={item}
+            quantity={quantity}
           />
         )}
       </div>
