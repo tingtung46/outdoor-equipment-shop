@@ -1,23 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import ShopPage from "./pages/ShopPage";
+import { useRef, useEffect, useState } from 'react';
+import Router from './Router';
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
 
-  const addProduct = ({ product, quantity }) => {
-    setShoppingCart((prevState) => ([...prevState, { product, quantity }]));
+  const addProduct = (product, quantity) => {
+    setShoppingCart((prevState) => [...prevState, { ...product, quantity }]);
   };
 
   const updateProductQuantity = (productId, quantity) => {
-    setShoppingCart((prevState) => (prevState.map((item) => {
-      item.product.id === productId ? { ...item, quantity } : item;
-    })));
+    setShoppingCart((prevState) =>
+      prevState.map((item) => item.Id === productId ? { ...item, quantity } : item
+      ),
+    );
   };
 
   const removeProduct = (product) => {
-    setShoppingCart((prevState) => (prevState.filter((item) => {
-      item.product.id !== product.id;
-    })));
+    setShoppingCart((prevState) =>
+      prevState.filter((item) => {
+        item.Id !== product.Id;
+      }),
+    );
   };
 
   const firstRender = useRef(true);
@@ -31,15 +34,20 @@ function App() {
 
       return () => {
         firstRender.current = false;
-      }
+      };
     }
 
     localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-  }, [shoppingCart.length]);
+  }, [shoppingCart]);
 
   return (
     <>
-      <ShopPage />
+      <Router
+        addProduct={addProduct}
+        removeProduct={removeProduct}
+        updateProductQuantity={updateProductQuantity}
+        shoppingCart={shoppingCart}
+      />
     </>
   );
 }
