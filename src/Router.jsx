@@ -6,7 +6,7 @@ import CartPage from './pages/CartPage';
 import ShopPage from './pages/ShopPage';
 import ProductDisplay from './components/ProductDisplay';
 import ProductPage from './pages/ProductPage';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const Router = ({ addProduct, removeProduct, updateProductQuantity, shoppingCart }) => {
   const router = createBrowserRouter([
@@ -21,19 +21,24 @@ const Router = ({ addProduct, removeProduct, updateProductQuantity, shoppingCart
         {
           path: 'shop-page',
           element: <ShopPage />,
-          children: [
-            { path: ':category', element: <ProductDisplay /> }
-          ]
+          children: [{ path: ':category', element: <ProductDisplay /> }],
         },
         {
           path: 'product/:category/:product',
-          element: <ProductPage />
+          element: (
+            <ProductPage
+              addProduct={addProduct}
+              shoppingCart={shoppingCart}
+              updateProduct={updateProductQuantity}
+              removeProduct={removeProduct}
+            />
+          ),
         },
-      ]
-    }
+      ],
+    },
   ]);
 
   return <RouterProvider router={router} />;
-}
+};
 
 export default Router;
