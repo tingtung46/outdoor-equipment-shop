@@ -17,9 +17,7 @@ function App() {
 
   const removeProduct = (product) => {
     setShoppingCart((prevState) =>
-      prevState.filter((item) => {
-        item.Id !== product.Id;
-      }),
+      prevState.filter((item) => item.Id !== product.Id),
     );
   };
 
