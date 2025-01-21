@@ -1,24 +1,27 @@
-import { MinusCircle, PlusCircle } from 'lucide-react';
-import { getProductImage } from '../utils/getImage'
-import { useState } from 'react';
+import { MinusCircle, PlusCircle, Trash2 } from 'lucide-react';
+import { getProductImage } from '../utils/getImage';
 import PropTypes from 'prop-types';
 
-const CartItem = ({ query }) => {
-  const [item, setItem] = useState(query);
-
+const CartItem = ({ item, updateProduct, removeProduct }) => {
   const image = getProductImage(item.Id);
 
   const inputOnlyNumber = (e) => {
-    if (NaN(e.key)) e.preventDefault;
+    if (!/[0-9]/.test(e.key)) e.preventDefault();
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
-    setItem(prevItem => ({
-      ...prevItem,
-      quantity: e.target.value,
-    }))
-  }
+    if (e.target.value === 0) removeProduct(item);
+
+    updateProduct(item.Id, e.target.value);
+  };
+
+  const decreaseQuantity = () => {
+    updateProduct(item.Id, item.quantity - 1);
+  };
+
+  const increaseQuantity = () => {
+    updateProduct(item.Id, item.quantity + 1);
+  };
 
   return (
     <>
@@ -38,7 +41,7 @@ const CartItem = ({ query }) => {
           <div>
             <label htmlFor="quantity">Quantity</label>
 
-            <button type="button">
+            <button type="button" onClick={decreaseQuantity}>
               <MinusCircle />
             </button>
             <input
@@ -46,22 +49,28 @@ const CartItem = ({ query }) => {
               name="quantity"
               id="quantity"
               value={item.quantity}
-              aria-label='quantity'
+              aria-label="quantity"
               onKeyDown={inputOnlyNumber}
               onChange={handleChange}
             />
-            <button type="button">
+            <button type="button" onClick={increaseQuantity}>
               <PlusCircle />
             </button>
           </div>
         </div>
+
+        <button type="button" onClick={() => removeProduct(item)}>
+          <Trash2 />
+        </button>
       </div>
     </>
   );
 };
 
 CartItem.propTypes = {
-  query: PropTypes.any || PropTypes.array,
+  item: PropTypes.object,
+  updateProduct: PropTypes.any || PropTypes.func,
+  removeProduct: PropTypes.any || PropTypes.func,
 };
 
 export default CartItem;
