@@ -9,7 +9,7 @@ const Card = ({ product }) => {
     <>
       <div className="w-25 h-27">
         <Link
-          to={`/product/${product.Type.toLowerCase()}/${product.Name.split(' ').join('-').toLowerCase()}`}
+          to={`/product/${product.Param}/${product.Name.split(' ').join('-').toLowerCase()}`}
         >
           <img src={imgUrl} alt="Product" className="w-full h-full rounded-md" />
 
