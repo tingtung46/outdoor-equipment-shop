@@ -10,7 +10,7 @@ function App() {
 
   const updateProductQuantity = (productId, quantity) => {
     setShoppingCart((prevState) =>
-      prevState.map((item) => item.Id === productId ? { ...item, quantity } : item
+      prevState.map((item) => item.Id === productId ? { ...item, quantity: quantity } : item
       ),
     );
   };
