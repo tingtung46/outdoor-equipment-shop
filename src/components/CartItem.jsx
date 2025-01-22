@@ -10,8 +10,6 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.value === 0) removeProduct(item);
-
     updateProduct(item.Id, e.target.value);
   };
 
@@ -22,6 +20,8 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
   const increaseQuantity = () => {
     updateProduct(item.Id, item.quantity + 1);
   };
+
+  if (item.quantity === 0) removeProduct(item);
 
   return (
     <>
