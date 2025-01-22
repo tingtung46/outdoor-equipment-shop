@@ -31,12 +31,18 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
         <div>
           <div>
             <p>{item.Brand}</p>
-            <p>sub total price</p>
+            <p>
+              {'\u0024'}
+              {Math.round(item.Price * item.quantity * 100) / 100}
+            </p>
           </div>
 
           <h3>{item.Name}</h3>
 
-          <p>{item.Price}</p>
+          <p>
+            {'\u0024'}
+            {item.Price}
+          </p>
 
           <div>
             <label htmlFor="quantity">Quantity</label>
