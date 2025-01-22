@@ -1,4 +1,4 @@
-const OrderSummary = () => {
+const OrderSummary = ({ subTotal }) => {
   return (
     <section>
       <h3>Order Summary</h3>
@@ -6,7 +6,7 @@ const OrderSummary = () => {
       <div>
         <div>
           <p>Sub total</p>
-          <p>{'\u0024'}subTotal</p>
+          <p>{'\u0024'}{subTotal}</p>
         </div>
 
         <div>
@@ -22,7 +22,7 @@ const OrderSummary = () => {
 
       <div>
         <p>Order Total</p>
-        <p>{'\u0024'}total</p>
+        <p>{'\u0024'}{subTotal}</p>
       </div>
     </section>
   );

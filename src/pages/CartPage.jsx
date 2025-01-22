@@ -6,7 +6,10 @@ import emptyCart from '../images/heroImages/empty-cart.png';
 import PropTypes from 'prop-types';
 
 const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
-  console.log(shoppingCart)
+  const subTotalPrice =
+    Math.round(shoppingCart.reduce((total, item) => item.Price * item.quantity + total, 0) * 100) /
+    100;
+
   if (!shoppingCart.length) {
     return (
       <div>
@@ -31,11 +34,11 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
         </section>
 
         <GetProductButton />
-        <OrderSummary />
+        <OrderSummary subTotal={subTotalPrice} />
 
         <button type="button">Check Out</button>
       </>
-    )
+    );
   }
 };
 
