@@ -13,7 +13,7 @@ const Category = () => {
           {type.map((category) => {
             return (
               <div key={uuidv4()}>
-                <Link to={`/shop-page/${category.id}`}>
+                <Link to={`/shop-page/${category.param}`}>
                   <img src={getCategoryImage(category.id)} alt="Category" />
                   <p>{category.type}</p>
                 </Link>
