@@ -1,35 +1,24 @@
-import { Link } from 'react-router-dom';
-import logo from '../images/logo/navbar-logo.png';
 import { ShoppingCart } from 'lucide-react';
+import logo from '../images/logo/navbar-logo.png';
+import NavDesktop from './NavDesktop';
+import { Link } from "react-router-dom";
+import NavMobile from './NavMobile';
 
 const Header = () => {
   return (
     <>
-      <header>
-        <div className="container">
-          <div>
-            <img src={logo} alt="Logo" />
-          </div>
+      <header className='relative flex flex-row justify-between items-center w-full px-8 z-30'>
+        <div>
+          <img src={logo} alt="Logo" />
+        </div>
 
-          <nav className="flex">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
+        <NavDesktop />
 
-              <li>
-                <Link to="/shop-page/all">Shop</Link>
-              </li>
-
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Link to="/cart">
+        <div className='flex flex-row justify-between items-center gap-5'>
+          <Link to="/cart" className="text-neutral-500 transition-all">
             <ShoppingCart />
           </Link>
+          <NavMobile />
         </div>
       </header>
     </>
