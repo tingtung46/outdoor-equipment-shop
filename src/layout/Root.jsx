@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 const Root = () => {
   return (
     <>
-      <section>
+      <section className="mx-auto my-0 max-w-7xl">
         <Header />
         <main>
           <Outlet />
