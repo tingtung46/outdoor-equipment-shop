@@ -14,27 +14,19 @@
   --hover-main-color: rgba(36, 36, 36, 0.6);
   color: var(--main-color);
   background-color: var(--main-bg-color);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   font-weight: 500;
   color: var(--main-color);
   text-decoration: inherit;
-}
 
-a:hover {
-  color: var(--hover-main-color);
+  &:hover {
+    color: var(--hover-main-color);
+  }
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -55,20 +47,20 @@ button {
   color: var(--secondary-color);
   cursor: pointer;
   transition: border-color 0.25s;
-}
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-  border-color: var(--secondary-color);
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+    border-color: var(--secondary-color);
+  }
 }
 
 input {
   border: solid 2px var(--hover-main-color);
   background-color: var(--input-bg-color);
-}
 
-input:focus {
-  outline: none;
-  border-color: var(--main-color);
+  &:focus {
+    outline: none;
+    border-color: var(--main-color);
+  }
 }
