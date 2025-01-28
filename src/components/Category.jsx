@@ -24,7 +24,7 @@ const Category = () => {
           effect="coverflow"
           spaceBetween={30}
           slidesPerView={'auto'}
-          coverflowEffect={{ rotate: 0, stretch: 80, depth: 350, modifier: 1, slideShadow: true }}
+          coverflowEffect={{ rotate: 0, stretch: 80, depth: 350, modifier: 1, slideShadows: true }}
           pagination={{ clickable: true }}
           className="px-8 w-full h-auto"
         >
