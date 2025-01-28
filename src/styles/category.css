@@ -36,3 +36,21 @@
 .swiper-button-next {
   color: rgb(44, 44, 44);
 }
+
+@media (max-width: 900px) {
+  .swiper-slide {
+    width: 250px;
+  }
+}
+
+@media (max-width: 700px) {
+  .swiper-slide {
+    width: 230px;
+  }
+}
+
+@media (max-width: 610px) {
+  .swiper-slide {
+    width: 200px;
+  }
+}
