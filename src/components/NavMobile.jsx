@@ -22,7 +22,7 @@ const NavMobile = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-0 shadow-xl right-0 z-20 bg-white/60"
+            className="fixed left-0 shadow-xl right-0 z-20 bg-white"
           >
             <ul className="grid">
               <motion.li

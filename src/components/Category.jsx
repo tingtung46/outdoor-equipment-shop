@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 import '../styles/category.css';
 
 const Category = () => {
@@ -17,19 +16,23 @@ const Category = () => {
         <h2 className="font-semibold text-2xl/8 my-5">Category</h2>
 
         <Swiper
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={30}
-          slidesPerView={3}
+          modules={[Pagination, Navigation, EffectCoverflow]}
+          centeredSlides={true}
+          initialSlide={2}
+          speed={600}
           navigation={true}
+          effect="coverflow"
+          spaceBetween={30}
+          slidesPerView={'auto'}
+          coverflowEffect={{ rotate: 0, stretch: 80, depth: 350, modifier: 1, slideShadow: true }}
           pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          className="px-8 w-screen h-auto"
+          className="px-8 w-full h-auto"
         >
           {type.map((category) => {
             return (
               <SwiperSlide
                 key={uuidv4()}
-                className="relative w-[300px] h-auto border-2 border-neutral-300 rounded-xl"
+                className="relative border-2 border-neutral-300 rounded-xl"
               >
                 <Link to={`/shop-page/${category.param}`}>
                   <img
