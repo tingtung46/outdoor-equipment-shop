@@ -46,8 +46,8 @@ const ProductDisplay = () => {
     return <div>Not Found</div>;
   } else if (filteredProducts.flat().length) {
     return (
-      <section>
-        <div>
+      <section className="md:ml-[4.5rem] md:my-8">
+        <div className="md:grid md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
           {filteredProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
@@ -65,8 +65,8 @@ const ProductDisplay = () => {
     );
   } else {
     return (
-      <section>
-        <div>
+      <section className="md:ml-[4.5rem] md:my-8">
+        <div className="md:grid md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
           {currentProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}

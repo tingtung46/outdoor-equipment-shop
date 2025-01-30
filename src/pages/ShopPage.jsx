@@ -23,12 +23,10 @@ const ShopPage = () => {
 
   return (
     <>
-      <section className="flex">
+      <section className="md:flex md:gap-10 bg-gray-200 min-h-screen">
         <Filter handleFilter={handleBrandFilter} brands={brands} />
 
-        <section>
-          <Outlet />
-        </section>
+        <Outlet />
       </section>
     </>
   );
