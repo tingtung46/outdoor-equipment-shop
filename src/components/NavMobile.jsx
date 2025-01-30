@@ -1,11 +1,10 @@
 import { useClickAway } from 'react-use';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Squash as Hamburger } from 'hamburger-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 
-const NavMobile = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const NavMobile = ({ isOpen, setIsOpen }) => {
   const ref = useRef(null);
 
   useClickAway(ref, () => setIsOpen(false));
