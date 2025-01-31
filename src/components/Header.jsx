@@ -1,13 +1,14 @@
 import { ShoppingCart } from 'lucide-react';
 import logo from '../images/logo/navbar-logo.png';
 import NavDesktop from './NavDesktop';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NavMobile from './NavMobile';
 import { useState } from 'react';
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const changeBgColor = () => {
     if (window.scrollY >= 48) return setNavbar(true);
@@ -20,7 +21,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`sticky top-0 flex flex-row justify-between items-center w-full px-8 z-30 ${navbar || isOpen ? 'bg-white shadow-md' : 'bg-transparent'}`}
+        className={`sticky top-0 flex flex-row justify-between items-center w-full px-8 z-30 ${navbar || isOpen ? 'bg-white shadow-md' : ''} ${location.pathname === '/' ? 'bg-transparent' : 'bg-white shadow-md'}`}
       >
         <div>
           <Link to="/">
