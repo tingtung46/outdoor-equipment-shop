@@ -53,7 +53,7 @@ const ProductDisplay = () => {
           })}
         </div>
 
-        <div>
+        <div className="flex justify-center">
           <Pagination
             currentPage={currentPage}
             totalCount={filteredProducts.flat().length}
@@ -72,7 +72,7 @@ const ProductDisplay = () => {
           })}
         </div>
 
-        <div>
+        <div className="flex justify-center">
           <Pagination
             currentPage={currentPage}
             totalCount={products.length}

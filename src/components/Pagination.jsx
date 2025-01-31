@@ -1,17 +1,11 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Ellipsis } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { usePagination, DOTS } from '../utils/usePagination';
 import classNames from 'classnames';
 import '../styles/pagination.css';
 
-const Pagination = ({
-  onPageChange,
-  totalCount,
-  siblingCount = 1,
-  currentPage,
-  pageSize,
-}) => {
+const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, pageSize }) => {
   const paginationRange = usePagination({ currentPage, totalCount, siblingCount, pageSize });
 
   // If there are less than 2 times in pagination range we shall not render the component
@@ -27,14 +21,14 @@ const Pagination = ({
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange - 1];
+  let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className="flex list-none">
+    <ul className="flex list-none gap-3">
       <li>
         <button
           onClick={onPrevious}
-          className={classNames('arrow', { disabled: currentPage === 1 })}
+          className={classNames('arrow', 'shadow-sm', { disabled: currentPage === 1 })}
         >
           <ArrowLeft />
         </button>
@@ -43,8 +37,8 @@ const Pagination = ({
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return (
-            <li key={uuidv4()}>
-              {'\u2026'}
+            <li key={uuidv4()} className="flex items-center text-gray-600">
+              <Ellipsis />
             </li>
           );
         }
@@ -53,7 +47,7 @@ const Pagination = ({
           <li key={uuidv4()}>
             <button
               onClick={() => onPageChange(pageNumber)}
-              className={classNames({ selected: currentPage === pageNumber })}
+              className={classNames('shadow-sm', { selected: currentPage === pageNumber })}
             >
               {pageNumber}
             </button>
@@ -64,7 +58,7 @@ const Pagination = ({
       <li>
         <button
           onClick={onNext}
-          className={classNames('arrow', { disabled: currentPage === lastPage })}
+          className={classNames('arrow', 'shadow-sm', { disabled: currentPage === lastPage })}
         >
           <ArrowRight />
         </button>
@@ -78,6 +72,6 @@ Pagination.propTypes = {
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   pageSize: PropTypes.number,
-}
+};
 
 export default Pagination;

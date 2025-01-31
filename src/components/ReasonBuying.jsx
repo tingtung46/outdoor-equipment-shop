@@ -16,7 +16,7 @@ const ReasonBuying = () => {
           </div>
 
           <div className="border-2 border-neutral-400 rounded-lg p-4">
-            <h3 className="font-semibold text-xl mb-7">Free Shipping</h3>
+            <h3 className="font-semibold text-xl mb-7">Free shipping</h3>
             <p>On most items</p>
           </div>
         </div>
