@@ -10,7 +10,9 @@ const FilterDesktop = ({ type, brands, handleFilter }) => {
           {type.map((type) => {
             return (
               <li key={type.id}>
-                <Link to={`/shop-page/${type.param}`}>{type.type}</Link>
+                <Link to={`/shop-page/${type.param}`} className="text-neutral-600 text-base">
+                  {type.type}
+                </Link>
               </li>
             );
           })}
@@ -31,7 +33,9 @@ const FilterDesktop = ({ type, brands, handleFilter }) => {
                   onChange={(e) => handleFilter(e, brand.brand.toLowerCase())}
                   className="peer appearance-none shrink-0 w-4 h-4 border-2 border-gray-300 rounded-sm bg-white focus:outline-none focus:ring-offset-0 focus:ring-1 focus:ring-gray-200 checked:bg-gray-500 checked:border-0"
                 />
-                <label htmlFor={brand.brand.toLowerCase()}>{brand.brand}</label>
+                <label htmlFor={brand.brand.toLowerCase()} className="text-neutral-600 text-base">
+                  {brand.brand}
+                </label>
                 <svg
                   className="absolute w-4 h-4 pointer-events-none hidden peer-checked:block stroke-white mt-1 outline-none"
                   xmlns="http://www.w3.org/2000/svg"
