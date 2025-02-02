@@ -11,7 +11,7 @@ const Filter = ({ handleFilter }) => {
 
   return (
     <>
-      <aside className="bg-white md:border-r-2 md:border-neutral-300 shadow-md md:pl-6 md:w-[250px]">
+      <aside className="sticky top-[48px] bg-white md:border-r-2 md:border-neutral-300 shadow-md md:pl-6 md:w-[250px]">
         <FilterMobile type={type} brands={brands} handleFilter={handleFilter} />
         <FilterDesktop type={type} brands={brands} handleFilter={handleFilter} />
       </aside>
