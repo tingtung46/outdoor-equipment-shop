@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const FilterDesktop = ({ type, brands, handleFilter }) => {
   return (
-    <div className="hidden md:block">
+    <div className="hidden md:block md:sticky md:top-[48px]">
       <div>
         <h3 className="font-semibold text-lg mt-3 mb-2">Category</h3>
 
