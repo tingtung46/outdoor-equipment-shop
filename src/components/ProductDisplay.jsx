@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { getData } from '../utils/productDisplayManager';
 
-let pageSize = 9;
+let pageSize = window.matchMedia('(max-width: 1023.99px)').matches ? 10 : 9;
 
 const ProductDisplay = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,7 +47,7 @@ const ProductDisplay = () => {
   } else if (filteredProducts.flat().length) {
     return (
       <section className="md:ml-[4.5rem] md:my-8">
-        <div className="md:grid md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
+        <div className="grid grid-cols-[250px] gap-4 md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
           {filteredProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
@@ -65,8 +65,8 @@ const ProductDisplay = () => {
     );
   } else {
     return (
-      <section className="md:ml-[4.5rem] md:my-8">
-        <div className="md:grid md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
+      <section className="md:my-8">
+        <div className="grid grid-cols-[250px] sm:grid-cols-[repeat(2,_250px)] lg:grid-cols-[repeat(3,_250px)] lg:gap-9 gap-4 px-4 justify-center my-7">
           {currentProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
