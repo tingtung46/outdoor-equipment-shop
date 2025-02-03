@@ -46,8 +46,8 @@ const ProductDisplay = () => {
     return <div>Not Found</div>;
   } else if (filteredProducts.flat().length) {
     return (
-      <section className="md:ml-[4.5rem] md:my-8">
-        <div className="grid grid-cols-[250px] gap-4 md:grid-cols-[repeat(3,_250px)] md:gap-9 mb-7">
+      <section className="md:my-8 mb-3">
+        <div className="grid grid-cols-[250px] sm:grid-cols-[repeat(2,_250px)] lg:grid-cols-[repeat(3,_250px)] lg:gap-9 gap-4 px-4 justify-center my-7">
           {filteredProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
@@ -65,8 +65,8 @@ const ProductDisplay = () => {
     );
   } else {
     return (
-      <section className="md:my-8">
-        <div className="grid grid-cols-[250px] sm:grid-cols-[repeat(2,_250px)] lg:grid-cols-[repeat(3,_250px)] lg:gap-9 gap-4 px-4 justify-center my-7">
+      <section className="md:my-8 mb-3">
+        <div className="grid grid-cols-[250px] sm:grid-cols-[repeat(2,_250px)] lg:grid-cols-[repeat(3,_250px)] lg:gap-7 gap-4 px-4 justify-center my-7">
           {currentProductData.map((product) => {
             return <Card product={product} key={uuidv4()} />;
           })}
