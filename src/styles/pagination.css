@@ -12,3 +12,15 @@
   pointer-events: none;
   background-color: rgba(36, 36, 36, 0.3);
 }
+
+@media (max-width: 639.99px) {
+  .page-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+
+    svg {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+}
