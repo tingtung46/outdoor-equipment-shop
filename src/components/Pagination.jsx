@@ -24,11 +24,11 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
   let lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className="flex list-none gap-3">
+    <ul className="flex list-none gap-1 sm:gap-3">
       <li>
         <button
           onClick={onPrevious}
-          className={classNames('arrow', 'shadow-sm', { disabled: currentPage === 1 })}
+          className={classNames('arrow', 'page-btn', 'shadow-sm', { disabled: currentPage === 1 })}
         >
           <ArrowLeft />
         </button>
@@ -47,7 +47,9 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
           <li key={uuidv4()}>
             <button
               onClick={() => onPageChange(pageNumber)}
-              className={classNames('shadow-sm', { selected: currentPage === pageNumber })}
+              className={classNames('page-btn', 'shadow-sm', {
+                selected: currentPage === pageNumber,
+              })}
             >
               {pageNumber}
             </button>
@@ -58,7 +60,9 @@ const Pagination = ({ onPageChange, totalCount, siblingCount = 1, currentPage, p
       <li>
         <button
           onClick={onNext}
-          className={classNames('arrow', 'shadow-sm', { disabled: currentPage === lastPage })}
+          className={classNames('arrow', 'page-btn', 'shadow-sm', {
+            disabled: currentPage === lastPage,
+          })}
         >
           <ArrowRight />
         </button>
