@@ -11,7 +11,7 @@ const Card = ({ product }) => {
         <Link to={`/product/${product.Param}/${product.Name.split(' ').join('-').toLowerCase()}`}>
           <div>
             <img src={imgUrl} alt="Product" className="w-full h-full rounded-md mb-2" />
-            <div className="flex justify-between md:text-sm">
+            <div className="flex justify-between text-sm">
               <p>{product.Name}</p>
               <p>
                 {'\u0024'}
