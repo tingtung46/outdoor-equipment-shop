@@ -40,35 +40,49 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
   };
 
   return (
-    <>
-      <img src={imgUrl} alt="Product" />
+    <div className="min-h-screen md:flex md:flex-row md:justify-center md:gap-10">
+      <img src={imgUrl} alt="Product" className="w-[400px] h-[400px] mt-5" />
 
-      <div>
-        <div>
-          <h2>{item.Name}</h2>
-          <p>{item.Price}</p>
-        </div>
+      <div className="w-[50%] mt-5">
+        <h2 className="text-xl font-semibold">{item.Name}</h2>
+        <p className="text-lg text-red-700">
+          {'\u0024'}
+          {item.Price}
+        </p>
 
-        <p>{item.Description}</p>
+        <p className="md:w-[70%] mb-3">{item.Description}</p>
 
-        <div>
-          <label htmlFor="quantity">Quantity</label>
+        <div className="mb-3">
+          <label htmlFor="quantity" className="mb-1 block">
+            Quantity
+          </label>
 
-          <button type="button" onClick={decreaseQuantity}>
-            <MinusCircle />
-          </button>
-          <input
-            type="text"
-            name="quantity"
-            id="quantity"
-            value={quantity}
-            aria-label="quantity"
-            onKeyDown={inputOnlyNumber}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-          />
-          <button type="button" onClick={increaseQuantity}>
-            <PlusCircle />
-          </button>
+          <div className="flex flex-row jusitify-between items-center">
+            <button
+              type="button"
+              onClick={decreaseQuantity}
+              className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
+            >
+              <MinusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
+            </button>
+            <input
+              type="text"
+              name="quantity"
+              id="quantity"
+              value={quantity}
+              aria-label="quantity"
+              onKeyDown={inputOnlyNumber}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="px-4 py-2 w-[4rem] rounded-md text-center bg-white"
+            />
+            <button
+              type="button"
+              onClick={increaseQuantity}
+              className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
+            >
+              <PlusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
+            </button>
+          </div>
         </div>
 
         {!isAdded ? (
@@ -91,7 +105,7 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
