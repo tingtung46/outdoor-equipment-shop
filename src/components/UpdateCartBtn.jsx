@@ -1,9 +1,15 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const UpdateCartBtn = ({ updateProduct, removeProduct, setIsAdded, item, quantity }) => {
   return (
-    <div>
-      <button type="button" onClick={() => { updateProduct(item.Id, quantity) }}>
+    <div className="flex flex-row gap-5">
+      <button
+        type="button"
+        onClick={() => {
+          updateProduct(item.Id, quantity);
+        }}
+        className={`${quantity === 0 ? 'opacity-25 pointer-events-none' : ''}`}
+      >
         Update product
       </button>
 
@@ -14,7 +20,7 @@ const UpdateCartBtn = ({ updateProduct, removeProduct, setIsAdded, item, quantit
           setIsAdded(false);
         }}
       >
-        Remove product
+        Remove product from cart
       </button>
     </div>
   );
@@ -28,4 +34,4 @@ UpdateCartBtn.propTypes = {
   setIsAdded: PropTypes.any || PropTypes.func,
   item: PropTypes.object,
   quantity: PropTypes.number,
-}
+};
