@@ -40,70 +40,79 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
   };
 
   return (
-    <div className="min-h-screen md:flex md:flex-row md:justify-center md:gap-10">
-      <img src={imgUrl} alt="Product" className="w-[400px] h-[400px] mt-5" />
+    <div className="min-h-screen flex justify-center">
+      <div className="w-[90%] md:flex md:flex-row md:justify-center md:gap-10">
+        <img
+          src={imgUrl}
+          alt="Product"
+          className="block md:w-[380px] md:h-[380px] lg:w-[500px] lg:h-[500px] my-5"
+        />
 
-      <div className="w-[50%] mt-5">
-        <h2 className="text-xl font-semibold">{item.Name}</h2>
-        <p className="text-lg text-red-700">
-          {'\u0024'}
-          {item.Price}
-        </p>
+        <div className="my-5 md:w-[70%] lg:w-[50%]">
+          <h2 className="text-xl font-semibold">{item.Name}</h2>
+          <p className="text-lg text-red-700 font-semibold mb-4">
+            {'\u0024'}
+            {item.Price}
+          </p>
 
-        <p className="md:w-[70%] mb-3">{item.Description}</p>
+          <p className="mb-3">{item.Description}</p>
 
-        <div className="mb-3">
-          <label htmlFor="quantity" className="mb-1 block">
-            Quantity
-          </label>
+          <div className="mb-4">
+            <label htmlFor="quantity" className="mb-1 block">
+              Quantity
+            </label>
 
-          <div className="flex flex-row jusitify-between items-center">
-            <button
-              type="button"
-              onClick={decreaseQuantity}
-              className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
-            >
-              <MinusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
-            </button>
-            <input
-              type="text"
-              name="quantity"
-              id="quantity"
-              value={quantity}
-              aria-label="quantity"
-              onKeyDown={inputOnlyNumber}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-              className="px-4 py-2 w-[4rem] rounded-md text-center bg-white"
-            />
-            <button
-              type="button"
-              onClick={increaseQuantity}
-              className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
-            >
-              <PlusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
-            </button>
+            <div className="flex flex-row jusitify-between items-center">
+              <button
+                type="button"
+                onClick={decreaseQuantity}
+                className={`px-[0.8rem] py-[0.4rem] bg-white focus:outline-none ${quantity === 0 ? 'opacity-25 pointer-events-none' : ''}`}
+              >
+                <MinusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
+              </button>
+
+              <input
+                type="text"
+                name="quantity"
+                id="quantity"
+                value={quantity}
+                aria-label="quantity"
+                onKeyDown={inputOnlyNumber}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                className="px-4 py-2 w-[4rem] rounded-md text-center bg-white"
+              />
+
+              <button
+                type="button"
+                onClick={increaseQuantity}
+                className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
+              >
+                <PlusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
+              </button>
+            </div>
           </div>
-        </div>
 
-        {!isAdded ? (
-          <button
-            type="button"
-            onClick={() => {
-              addProduct({ ...item }, quantity);
-              setIsAdded(true);
-            }}
-          >
-            Add to Cart
-          </button>
-        ) : (
-          <UpdateCartBtn
-            updateProduct={updateProduct}
-            removeProduct={removeProduct}
-            setIsAdded={setIsAdded}
-            item={item}
-            quantity={quantity}
-          />
-        )}
+          {!isAdded ? (
+            <button
+              type="button"
+              onClick={() => {
+                addProduct({ ...item }, quantity);
+                setIsAdded(true);
+              }}
+              className={`${quantity === 0 ? 'opacity-25 pointer-events-none' : ''}`}
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <UpdateCartBtn
+              updateProduct={updateProduct}
+              removeProduct={removeProduct}
+              setIsAdded={setIsAdded}
+              item={item}
+              quantity={quantity}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
