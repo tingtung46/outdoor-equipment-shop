@@ -20,7 +20,7 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
   } else {
     return (
       <>
-        <section>
+        <section className="flex flex-col items-center">
           {shoppingCart.map((item) => {
             return (
               <CartItem
