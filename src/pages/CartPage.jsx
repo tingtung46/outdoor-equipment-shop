@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import CartItem from '../components/CartItem';
-import GetProductButton from '../components/GetProductButton';
 import OrderSummary from '../components/OrderSummary';
 import emptyCart from '../images/heroImages/empty-cart.png';
 import PropTypes from 'prop-types';
@@ -33,7 +32,6 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
           })}
         </section>
 
-        <GetProductButton />
         <OrderSummary subTotal={subTotalPrice} />
 
         <button type="button">Check Out</button>
