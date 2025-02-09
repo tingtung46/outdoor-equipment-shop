@@ -11,14 +11,14 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
 
   if (!shoppingCart.length) {
     return (
-      <div>
+      <div className="flex flex-col items-center">
         <img src={emptyCart} alt="Empty Cart" />
         <p>The cart is empty</p>
       </div>
     );
   } else {
     return (
-      <>
+      <div className="min-h-screen">
         <section className="flex flex-col items-center">
           {shoppingCart.map((item) => {
             return (
@@ -35,7 +35,7 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
         <OrderSummary subTotal={subTotalPrice} />
 
         <button type="button">Check Out</button>
-      </>
+      </div>
     );
   }
 };

@@ -6,11 +6,11 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
   const image = getProductImage(item.Id);
 
   const inputOnlyNumber = (e) => {
-    if (!/[0-9]/.test(e.key)) e.preventDefault();
+    if (isNaN(e.key) && e.key !== 'Backspace') e.preventDefault();
   };
 
   const handleChange = (e) => {
-    updateProduct(item.Id, e.target.value);
+    updateProduct(item.Id, Number(e.target.value));
   };
 
   const decreaseQuantity = () => {
@@ -69,7 +69,7 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
               aria-label="quantity"
               onKeyDown={inputOnlyNumber}
               onChange={handleChange}
-              className="px-4 py-2 w-[4rem] rounded-md text-center bg-white text-sm sm:text-md"
+              className="px-4 py-2 w-[4rem] rounded-md text-center bg-white"
             />
             <button
               type="button"
