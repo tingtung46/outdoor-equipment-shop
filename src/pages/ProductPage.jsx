@@ -27,7 +27,7 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
   }, [foundItem]);
 
   const inputOnlyNumber = (e) => {
-    if (!/[0-9]/.test(e.key)) e.preventDefault();
+    if (isNaN(e.key) && e.key !== 'Backspace') e.preventDefault();
   };
 
   const decreaseQuantity = () => {
