@@ -1,6 +1,7 @@
 import { MinusCircle, PlusCircle, Trash2 } from 'lucide-react';
 import { getProductImage } from '../utils/getImage';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const CartItem = ({ item, updateProduct, removeProduct }) => {
   const image = getProductImage(item.Id);
@@ -35,7 +36,9 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
         <div className="my-5 w-[80%] md:w-[70%] lg:w-[60%]">
           <p className="text-sm sm:text-md">{item.Brand}</p>
 
-          <h3 className="text-md sm:text-xl font-semibold mb-3">{item.Name}</h3>
+          <Link to={`/product/${item.Param}/${item.Name.split(' ').join('-').toLowerCase()}`}>
+            <h3 className="text-md sm:text-xl font-semibold mb-3">{item.Name}</h3>
+          </Link>
 
           <button
             type="button"
@@ -47,7 +50,7 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
         </div>
       </div>
 
-      <div className="w-[90%] md:w-[86%] lg:w-[75%] flex flex-row justify-between items-center sm:gap-10">
+      <div className="w-[90%] lg:w-[83%] flex flex-row justify-between items-center sm:gap-10">
         <div className="mb-4">
           <label htmlFor="quantity" className="mb-1 block">
             Quantity

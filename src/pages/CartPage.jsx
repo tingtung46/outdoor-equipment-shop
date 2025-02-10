@@ -34,7 +34,13 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
 
         <OrderSummary subTotal={subTotalPrice} />
 
-        <button type="button">Check Out</button>
+        <div className="flex justify-center mb-8">
+          <div className="flex justify-end w-[90%] lg:w-[83%]">
+            <button type="button" className="focus:outline-none">
+              Proceed to checkout
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
