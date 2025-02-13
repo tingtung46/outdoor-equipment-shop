@@ -12,7 +12,7 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
 
   if (!shoppingCart.length) {
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-screen">
         <img src={emptyCart} alt="Empty Cart" className="mb-5" />
         <p>The cart is empty</p>
       </div>

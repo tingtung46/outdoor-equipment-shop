@@ -4,11 +4,14 @@ import NavDesktop from './NavDesktop';
 import { Link, useLocation } from 'react-router-dom';
 import NavMobile from './NavMobile';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Header = () => {
+const Header = ({ shoppingCart }) => {
   const [navbar, setNavbar] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+
+  let quantityTotal = shoppingCart.reduce((total, item) => item.quantity + total, 0);
 
   const changeBgColor = () => {
     if (window.scrollY >= 48) return setNavbar(true);
@@ -32,14 +35,27 @@ const Header = () => {
         <NavDesktop />
 
         <div className="flex flex-row justify-between items-center gap-5">
-          <Link to="/cart" className="text-neutral-500 transition-all">
-            <ShoppingCart />
-          </Link>
+          <button type="button" className="relative bg-transparent focus:outline-none">
+            <Link to="/cart" className="text-neutral-500 transition-all">
+              <ShoppingCart />
+            </Link>
+            {quantityTotal === 0 ? (
+              ''
+            ) : (
+              <div className="text-sm rounded-full bg-gray-500 flex justify-center items-center w-[1.5rem] h-[1.5rem] absolute top-0 right-0 translate-1/4">
+                {quantityTotal}
+              </div>
+            )}
+          </button>
           <NavMobile isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       </header>
     </>
   );
+};
+
+Header.propTypes = {
+  shoppingCart: PropTypes.array,
 };
 
 export default Header;

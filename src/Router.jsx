@@ -14,7 +14,7 @@ const Router = ({ addProduct, removeProduct, updateProductQuantity, shoppingCart
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root />,
+      element: <Root shoppingCart={shoppingCart} />,
       errorElement: <NotFound />,
       children: [
         { index: true, element: <HomePage /> },
