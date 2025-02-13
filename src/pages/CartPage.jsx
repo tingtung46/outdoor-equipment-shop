@@ -3,6 +3,7 @@ import CartItem from '../components/CartItem';
 import OrderSummary from '../components/OrderSummary';
 import emptyCart from '../images/heroImages/empty-cart.png';
 import PropTypes from 'prop-types';
+import { motion } from 'motion/react';
 
 const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
   const subTotalPrice =
@@ -12,13 +13,18 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
   if (!shoppingCart.length) {
     return (
       <div className="flex flex-col items-center">
-        <img src={emptyCart} alt="Empty Cart" />
+        <img src={emptyCart} alt="Empty Cart" className="mb-5" />
         <p>The cart is empty</p>
       </div>
     );
   } else {
     return (
-      <div className="min-h-screen">
+      <motion.div
+        initial={{ width: 0 }}
+        animate={{ width: '100%' }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
+        className="min-h-screen"
+      >
         <section className="flex flex-col items-center">
           {shoppingCart.map((item) => {
             return (
@@ -41,7 +47,7 @@ const CartPage = ({ shoppingCart, updateProduct, removeProduct }) => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 };

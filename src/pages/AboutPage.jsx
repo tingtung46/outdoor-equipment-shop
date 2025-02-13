@@ -1,9 +1,16 @@
 import img1 from '../images/aboutImages/about1.png';
 import img2 from '../images/aboutImages/about2.png';
+import { motion } from 'motion/react';
 
 const AboutPage = () => {
   return (
-    <div className="h-min-screen">
+    <motion.div
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.1 }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
+      className="h-min-screen"
+    >
       <div className="flex flex-col items-center">
         <h1 className="my-10">Who we are</h1>
 
@@ -39,7 +46,7 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

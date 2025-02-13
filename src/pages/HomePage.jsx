@@ -1,10 +1,16 @@
 import Category from '../components/Category';
 import ReasonBuying from '../components/ReasonBuying';
 import hero from '../images/heroImages/hero.png';
+import { motion } from 'motion/react';
 
 const HomePage = () => {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <section className="relative mt-[-3rem] h-screen w-full">
         <div className="absolute inset-0 overflow-hidden h-auto w-full">
           <img src={hero} alt="Hero" className="w-full h-full object-cover" />
@@ -20,7 +26,7 @@ const HomePage = () => {
       </section>
       <Category />
       <ReasonBuying />
-    </>
+    </motion.div>
   );
 };
 

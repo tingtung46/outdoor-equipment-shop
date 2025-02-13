@@ -8,6 +8,7 @@ import ProductDisplay from './components/ProductDisplay';
 import ProductPage from './pages/ProductPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AnimatePresence } from 'motion/react';
 
 const Router = ({ addProduct, removeProduct, updateProductQuantity, shoppingCart }) => {
   const router = createBrowserRouter([
@@ -48,7 +49,11 @@ const Router = ({ addProduct, removeProduct, updateProductQuantity, shoppingCart
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AnimatePresence>
+      <RouterProvider router={router} />
+    </AnimatePresence>
+  );
 };
 
 Router.propTypes = {

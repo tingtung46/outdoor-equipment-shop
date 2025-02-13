@@ -5,6 +5,7 @@ import data from '../data/catalog.json';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import UpdateCartBtn from '../components/UpdateCartBtn';
+import { motion } from 'motion/react';
 
 const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct }) => {
   const [quantity, setQuantity] = useState(1);
@@ -40,7 +41,12 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
   };
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <motion.div
+      initial={{ width: 0 }}
+      animate={{ width: '100%' }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
+      className="min-h-screen flex justify-center"
+    >
       <div className="w-[90%] md:flex md:flex-row md:justify-center md:gap-10">
         <img
           src={imgUrl}
@@ -114,7 +120,7 @@ const ProductPage = ({ addProduct, shoppingCart, updateProduct, removeProduct })
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
