@@ -24,7 +24,7 @@ const OrderSummary = ({ subTotal }) => {
         </div>
 
         <div className="flex justify-between px-2">
-          <p>Order Total</p>
+          <p className="font-semibold text-lg">Order Total</p>
 
           <p className="text-lg font-semibold">
             {'\u0024'}
