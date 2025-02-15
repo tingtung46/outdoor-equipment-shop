@@ -1,6 +1,6 @@
 # Alpinus - Outdoor Equipment Shop App
 
-A mock e-commerce site built in using React, React Router and React Testing Library. This e-commerce sell any products based on outdoor activity. The product data and images is taken from this [repository](https://github.com/dotnet/eShop).
+A mock e-commerce site built in using React, React Router and test it with React Testing Library. This e-commerce sell any products based on outdoor activity. The product data and images is taken from this [repository](https://github.com/dotnet/eShop).
 
 ![Home page](./public/desktop-shopping-cart.png)
 ![Product page](./public/desktop-product-page.png)
