@@ -47,7 +47,7 @@ const FilterMobile = ({ type, brands, handleFilter, paramBrands }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "-100%" }}
             transition={{ duration: 0.5 }}
-            className="absolute left-0 shadow-xl right-0 z-20 bg-white overflow-y-scroll h-screen"
+            className="absolute left-0 shadow-xl right-0 z-20 bg-white h-[100dvh]"
           >
             <div className="overflow-y-auto h-[86%] p-6">
               <div>
