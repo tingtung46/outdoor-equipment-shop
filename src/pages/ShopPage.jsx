@@ -1,9 +1,9 @@
-import Filter from '../components/Filter';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import Filter from "../components/Filter";
+import { Outlet, useSearchParams } from "react-router-dom";
 
 const ShopPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const brands = searchParams.getAll('brand') || [];
+  const brands = searchParams.getAll("brand") || [];
 
   const handleBrandFilter = (e, brandName) => {
     const include = brands.includes(brandName);
@@ -23,7 +23,7 @@ const ShopPage = () => {
 
   return (
     <section className="md:flex md:gap-10 bg-gray-200 min-h-screen">
-      <Filter handleFilter={handleBrandFilter} brands={brands} />
+      <Filter handleFilter={handleBrandFilter} paramBrands={brands} />
 
       <Outlet />
     </section>

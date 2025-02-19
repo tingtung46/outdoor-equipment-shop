@@ -1,6 +1,22 @@
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const FilterDesktop = ({ type, brands, handleFilter }) => {
+const FilterDesktop = ({ type, brands, handleFilter, paramBrands }) => {
+  const [checkedList, setCheckedList] = useState([]);
+
+  const handleSelect = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      setCheckedList([...checkedList, value]);
+    } else {
+      const filteredList = checkedList.filter((item) => item !== value);
+      setCheckedList(filteredList);
+    }
+  };
+
   return (
     <div className="hidden md:block md:sticky md:top-[48px]">
       <div>
@@ -10,7 +26,10 @@ const FilterDesktop = ({ type, brands, handleFilter }) => {
           {type.map((type) => {
             return (
               <li key={type.id}>
-                <Link to={`/shop-page/${type.param}`} className="text-neutral-600 text-base">
+                <Link
+                  to={`/shop-page/${type.param}`}
+                  className="text-neutral-600 text-base"
+                >
                   {type.type}
                 </Link>
               </li>
@@ -30,10 +49,23 @@ const FilterDesktop = ({ type, brands, handleFilter }) => {
                   type="checkbox"
                   name={brand.brand.toLowerCase()}
                   id={brand.brand.toLowerCase()}
-                  onChange={(e) => handleFilter(e, brand.brand.toLowerCase())}
+                  value={brand.brand}
+                  checked={
+                    brand.brand.toLowerCase() ===
+                    paramBrands.find(
+                      (item) => item === brand.brand.toLowerCase()
+                    )
+                  }
+                  onChange={(e) => {
+                    handleFilter(e, brand.brand.toLowerCase());
+                    handleSelect(e);
+                  }}
                   className="peer appearance-none shrink-0 w-4 h-4 border-2 border-gray-300 rounded-sm bg-white focus:outline-none focus:ring-offset-0 focus:ring-1 focus:ring-gray-200 checked:bg-gray-500 checked:border-0"
                 />
-                <label htmlFor={brand.brand.toLowerCase()} className="text-neutral-600 text-base">
+                <label
+                  htmlFor={brand.brand.toLowerCase()}
+                  className="text-neutral-600 text-base"
+                >
                   {brand.brand}
                 </label>
                 <svg
@@ -55,6 +87,13 @@ const FilterDesktop = ({ type, brands, handleFilter }) => {
       </div>
     </div>
   );
+};
+
+FilterDesktop.propTypes = {
+  type: PropTypes.array,
+  brands: PropTypes.array,
+  handleFilter: PropTypes.func,
+  paramBrands: PropTypes.array,
 };
 
 export default FilterDesktop;

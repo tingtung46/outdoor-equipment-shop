@@ -1,11 +1,13 @@
-import { ListFilter } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useClickAway } from 'react-use';
+import { ListFilter } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import PropTypes from "prop-types";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useClickAway } from "react-use";
 
-const FilterMobile = ({ type, brands, handleFilter }) => {
+const FilterMobile = ({ type, brands, handleFilter, paramBrands }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [checkedList, setCheckedList] = useState([]);
   const ref = useRef(null);
 
   useClickAway(ref, () => setIsOpen(false));
@@ -14,6 +16,18 @@ const FilterMobile = ({ type, brands, handleFilter }) => {
     if (!isOpen) return setIsOpen(true);
 
     setIsOpen(false);
+  };
+
+  const handleSelect = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      setCheckedList([...checkedList, value]);
+    } else {
+      const filteredList = checkedList.filter((item) => item !== value);
+      setCheckedList(filteredList);
+    }
   };
 
   return (
@@ -28,19 +42,19 @@ const FilterMobile = ({ type, brands, handleFilter }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '-100%' }}
+            initial={{ opacity: 0, x: "-100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '-100%' }}
+            exit={{ opacity: 0, x: "-100%" }}
             transition={{ duration: 0.5 }}
-            className="absolute left-0 shadow-xl right-40 sm:right-80 z-20 bg-white overflow-y-auto h-[calc(100vw-1px)] p-6"
+            className="absolute left-0 shadow-xl right-0 z-20 bg-white overflow-y-auto h-screen p-6"
           >
             <div>
-              <h3 className="font-semibold text-lg mt-3 mb-2">Category</h3>
+              <h3 className="font-semibold text-lg mb-2">Category</h3>
 
               <ul>
                 {type.map((type) => {
                   return (
-                    <li key={type.id}>
+                    <li key={type.id} className="mb-1">
                       <Link
                         to={`/shop-page/${type.param}`}
                         onClick={() => setIsOpen((prev) => !prev)}
@@ -60,12 +74,25 @@ const FilterMobile = ({ type, brands, handleFilter }) => {
               <div>
                 {brands.map((brand) => {
                   return (
-                    <div key={brand.id} className="flex gap-2 items-center">
+                    <div
+                      key={brand.id}
+                      className="flex gap-2 items-center mb-1"
+                    >
                       <input
                         type="checkbox"
                         name={brand.brand.toLowerCase()}
                         id={brand.brand.toLowerCase()}
-                        onChange={(e) => handleFilter(e, brand.brand.toLowerCase())}
+                        value={brand.brand}
+                        checked={
+                          brand.brand.toLowerCase() ===
+                          paramBrands.find(
+                            (item) => item === brand.brand.toLowerCase()
+                          )
+                        }
+                        onChange={(e) => {
+                          handleFilter(e, brand.brand.toLowerCase());
+                          handleSelect(e);
+                        }}
                         className="peer appearance-none shrink-0 w-4 h-4 border-2 border-gray-300 rounded-sm bg-white focus:outline-none focus:ring-offset-0 focus:ring-1 focus:ring-gray-200 checked:bg-gray-500 checked:border-0"
                       />
                       <label
@@ -96,6 +123,13 @@ const FilterMobile = ({ type, brands, handleFilter }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+FilterMobile.propTypes = {
+  type: PropTypes.array,
+  brands: PropTypes.array,
+  handleFilter: PropTypes.func,
+  paramBrands: PropTypes.array,
 };
 
 export default FilterMobile;
