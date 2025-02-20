@@ -1,13 +1,13 @@
-import { MinusCircle, PlusCircle, Trash2 } from 'lucide-react';
-import { getProductImage } from '../utils/getImage';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { MinusCircle, PlusCircle, Trash2 } from "lucide-react";
+import { getProductImage } from "../utils/getImage";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const CartItem = ({ item, updateProduct, removeProduct }) => {
   const image = getProductImage(item.Id);
 
   const inputOnlyNumber = (e) => {
-    if (isNaN(e.key) && e.key !== 'Backspace') e.preventDefault();
+    if (isNaN(e.key) && e.key !== "Backspace") e.preventDefault();
   };
 
   const handleChange = (e) => {
@@ -36,11 +36,16 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
         <div className="my-5 w-[80%] md:w-[70%] lg:w-[60%]">
           <p className="text-sm sm:text-md">{item.Brand}</p>
 
-          <Link to={`/product/${item.Param}/${item.Name.split(' ').join('-').toLowerCase()}`}>
-            <h3 className="text-md sm:text-xl font-semibold mb-3">{item.Name}</h3>
+          <Link
+            to={`/product/${item.Param}/${item.Name.split(" ").join("-").toLowerCase()}`}
+          >
+            <h3 className="text-md sm:text-xl font-semibold mb-3">
+              {item.Name}
+            </h3>
           </Link>
 
           <button
+            title="Remove"
             type="button"
             onClick={() => removeProduct(item)}
             className="inline-block px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
@@ -58,9 +63,10 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
 
           <div className="flex flex-row jusitify-between items-center">
             <button
+              title="Decrease"
               type="button"
               onClick={decreaseQuantity}
-              className={`px-[0.8rem] py-[0.4rem] bg-white focus:outline-none ${item.quantity === 0 ? 'opacity-25 pointer-events-none' : ''}`}
+              className={`px-[0.8rem] py-[0.4rem] bg-white focus:outline-none ${item.quantity === 0 ? "opacity-25 pointer-events-none" : ""}`}
             >
               <MinusCircle className="w-[1.5rem] h-[1.5rem] text-gray-800" />
             </button>
@@ -75,6 +81,7 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
               className="px-4 py-2 w-[4rem] rounded-md text-center bg-white"
             />
             <button
+              title="Increase"
               type="button"
               onClick={increaseQuantity}
               className="px-[0.8rem] py-[0.4rem] bg-white focus:outline-none"
@@ -86,12 +93,12 @@ const CartItem = ({ item, updateProduct, removeProduct }) => {
 
         <div className="flex justify-between items-center gap-6">
           <p className="text-sm sm:text-md text-red-700 font-semibold">
-            {'\u0024'}
+            {"\u0024"}
             {item.Price}
           </p>
 
           <p className="text-md sm:text-lg text-neutral-700 font-bold">
-            {'\u0024'}
+            {"\u0024"}
             {Math.round(item.Price * item.quantity * 100) / 100}
           </p>
         </div>

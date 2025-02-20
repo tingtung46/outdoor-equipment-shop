@@ -1,17 +1,17 @@
-import { useMemo } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Card from './Card';
-import Pagination from './Pagination';
-import PropTypes from 'prop-types';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { getData } from '../utils/productDisplayManager';
+import { useMemo } from "react";
+import { v4 as uuidv4 } from "uuid";
+import Card from "./Card";
+import Pagination from "./Pagination";
+import PropTypes from "prop-types";
+import { useParams, useSearchParams } from "react-router-dom";
+import { getData } from "../utils/productDisplayManager";
 
-let pageSize = window.matchMedia('(max-width: 1023.99px)').matches ? 10 : 9;
+let pageSize = window.matchMedia("(max-width: 1023.99px)").matches ? 10 : 9;
 
 const ProductDisplay = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
-  const filteredBrand = searchParams.getAll('brand') || [];
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const filteredBrand = searchParams.getAll("brand") || [];
   const { category } = useParams();
 
   const products = getData(category);
@@ -26,7 +26,9 @@ const ProductDisplay = () => {
 
   if (filteredBrand) {
     filteredBrand.forEach((brand) => {
-      const filteredItems = products.filter((product) => product.Brand.toLowerCase() === brand);
+      const filteredItems = products.filter(
+        (product) => product.Brand.toLowerCase() === brand
+      );
       filteredProducts.push(filteredItems);
     });
   }
@@ -39,7 +41,11 @@ const ProductDisplay = () => {
   }, [filteredProducts, currentPage]);
 
   const onPageChange = (onPage) => {
-    setSearchParams((prev) => ({ ...prev, page: onPage, brand: [...filteredBrand] }));
+    setSearchParams((prev) => ({
+      ...prev,
+      page: onPage,
+      brand: [...filteredBrand],
+    }));
   };
 
   if (!products.length && !filteredProducts.flat().length) {
